@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="integraMobile.ExternalWS.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="integraMobile_ExternalWS_StandardParkingWS_TariffComputerWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:41858/TariffComputer.asmx</Value>
+    </Setting>
+    <Setting Name="integraMobile_ExternalWS_EysaThirdPartyConfirmParkWS_Ticket" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://esixvyewb01t/parquimetrosWSVS2012/framework/ticket.asmx</Value>
+    </Setting>
+    <Setting Name="integraMobile_ExternalWS_EysaThirdPartyFineWS_Anulaciones" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://esdcvyewb02p/parquimetrosWS/framework/anulaciones.asmx</Value>
+    </Setting>
+    <Setting Name="integraMobile_ExternalWS_gTechnaThirdPartyFineWS_PayByPhoneOperationService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://demo.sales.gtechna.net/officercc-qa-ipark/ws/PayByPhoneOperation</Value>
+    </Setting>
+    <Setting Name="integraMobile_ExternalWS_gTechnaThirdPartyParkingConfirmWS_MESParkingRightsSOAPFacadeService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.168.3.91:8080/officercc-spaq/services/ParkingRightsListener</Value>
+    </Setting>
+    <Setting Name="integraMobile_ExternalWS_EysaThirdPartyParkWS_Tarifas" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://eysaIP.eysanet.com/parquimetrosWS/framework/tarifas.asmx</Value>
+    </Setting>
+    <Setting Name="integraMobile_ExternalWS_MeyparThirdPartyOffstreetWS_InterfazPublicaWebService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://80.28.251.76:2424/InterfazPublicaWS/InterfazPublicaWebService.asmx</Value>
+    </Setting>
+    <Setting Name="integraMobile_ExternalWS_PagateliaWS_ApiPayment" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://www.pagatelia.com/apipayments/ApiPayment.svc</Value>
+    </Setting>
+    <Setting Name="integraMobile_ExternalWS_MeyparPICWS_PIC_WS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://nexus.meypar.com/PreProd/TariffComputerBilbo.WS/PIC_WS.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

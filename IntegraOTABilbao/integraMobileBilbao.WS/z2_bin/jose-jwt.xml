@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>jose-jwt</name>
+    </assembly>
+    <members>
+        <member name="M:Jose.AesGcm.Encrypt(System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Performs AES encryption in GCM chaining mode over plain text
+            </summary>
+            <param name="key">aes key</param>
+            <param name="iv">initialization vector</param>
+            <param name="aad">additional authn data</param>
+            <param name="plainText">plain text message to be encrypted</param>
+            <returns>2 byte[] arrays: [0]=cipher text, [1]=authentication tag</returns>
+            /// <exception cref="T:System.Security.Cryptography.CryptographicException">if encryption failed by any reason</exception>
+        </member>
+        <member name="M:Jose.AesGcm.Decrypt(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Performs AES decryption in GCM chaning mode over cipher text
+            </summary>
+            <param name="key">aes key</param>
+            <param name="iv">initialization vector</param>
+            <param name="aad">additional authn data</param>
+            <param name="plainText">plain text message to be encrypted</param>
+            <returns>decrypted plain text messages</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">if decryption failed by any reason</exception>
+        </member>
+        <member name="M:Jose.PBKDF2.DeriveKey(System.Byte[],System.Byte[],System.Int32,System.Int32,System.Security.Cryptography.HMAC)">
+            <summary>
+            Implements RFC2898 Password Based Key Derivation Function #2
+            </summary>
+            <param name="password">password to be used as hash key</param>
+            <param name="salt">salt</param>
+            <param name="iterationCount">number of iterations to perform</param>
+            <param name="keyBitLength">desired key length in bits to detive</param>
+            <param name="prf">Pseudo Random Function, HMAC will be inited with key equal to given password</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jose.IKeyManagement.WrapNewKey(System.Int32,System.Object,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Generates anew Content Jwe Key (CEK) and wraps it via provided management key (Key-Jwe-Key)
+            </summary>
+            <param name="cekSizeBits">Length of key to generate (CEK) (bits).</param>
+            <param name="key">management key (KEK)</param>
+            <param name="header">JWT headers, dictionary can be mutated as part of call (e.g. keys added, e.t.c)</param>
+            <returns>2 byte[] arrays: [0]=plain CEK, [1]=encrypted CEK</returns>
+        </member>
+        <member name="M:Jose.IKeyManagement.Unwrap(System.Byte[],System.Object,System.Int32,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Unwraps protected CEK using provided management key
+            </summary>
+            <param name="encryptedCek">wrapped (encrypted) CEK</param>
+            <param name="key">management key (KEK) used to protected CEK</param>
+            <param name="cekSizeBits">required unwrapped bit CEK size</param>
+            <param name="header">JWT headers</param>
+            <returns>unwapped (decrypted) CEK</returns>
+        </member>
+        <member name="M:Jose.jwe.IJweAlgorithm.Encrypt(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Encrypts given plain text with Content Jwe Key (KEY)
+            </summary>
+            <param name="aad">Additional Authnetication Data according to JWE/JWA specs</param>
+            <param name="plainText"></param>
+            <param name="cek"></param>
+            <returns>3 items array: [0]=init vector (IV), [1]=cipher text, [2]=auth tag</returns>
+        </member>
+        <member name="P:Jose.jwe.IJweAlgorithm.KeySize">
+            <summary>
+            Returns key size for given algorithm
+            </summary>
+        </member>
+        <member name="T:Jose.JWT">
+            <summary>
+            Provides methods for encoding and decoding JSON Web Tokens.
+            </summary>
+        </member>
+        <member name="P:Jose.JWT.DefaultSettings">
+            <summary>
+            Global default settings for JWT.
+            </summary>
+        </member>
+        <!-- 对于成员“M:Jose.JWT.Headers(System.String,Jose.JwtSettings)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Jose.JWT.Headers``1(System.String,Jose.JwtSettings)">
+            <summary>
+            Parses JWT token, extracts and attempst to unmarshall headers to requested type
+            This method is NOT performing integrity checking. 
+            </summary>        
+            <param name="token">signed JWT token</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <typeparam name="T">desired type after unmarshalling</typeparam>
+            <returns>unmarshalled headers</returns>        
+        </member>
+        <member name="M:Jose.JWT.Payload(System.String,Jose.JwtSettings)">
+            <summary>
+            Parses signed JWT token, extracts and returns payload part as string 
+            This method is NOT supported for encrypted JWT tokens.
+            This method is NOT performing integrity checking. 
+            </summary>        
+            <param name="token">signed JWT token</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>unmarshalled payload</returns>
+            <exception cref="T:Jose.JoseException">if encrypted JWT token is provided</exception>        
+        </member>
+        <member name="M:Jose.JWT.PayloadBytes(System.String,Jose.JwtSettings)">
+            <summary>
+            Parses signed JWT token, extracts and returns payload part as binary data. 
+            This method is NOT supported for encrypted JWT tokens.
+            This method is NOT performing integrity checking. 
+            </summary>        
+            <param name="token">signed JWT token</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>unmarshalled payload</returns>
+            <exception cref="T:Jose.JoseException">if encrypted JWT token is provided</exception>        
+        </member>
+        <member name="M:Jose.JWT.Payload``1(System.String,Jose.JwtSettings)">
+            <summary>
+            Parses signed JWT token, extracts payload part and attempts to unmarshall string to requested type with configured json mapper.
+            This method is NOT supported for encrypted JWT tokens.
+            This method is NOT performing integrity checking. 
+            </summary>
+            <typeparam name="T">desired type after unmarshalling</typeparam>
+            <param name="token">signed JWT token</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>unmarshalled payload</returns>
+            <exception cref="T:Jose.JoseException">if encrypted JWT token is provided</exception>
+        </member>
+        <member name="M:Jose.JWT.Encode(System.Object,System.Object,Jose.JweAlgorithm,Jose.JweEncryption,System.Nullable{Jose.JweCompression},System.Collections.Generic.IDictionary{System.String,System.Object},Jose.JwtSettings)">
+            <summary>
+            Serialize and encodes object to JWT token and applies requested encryption/compression algorithms.        
+            </summary>
+            <param name="payload">json string to encode</param>
+            <param name="key">key for encryption, suitable for provided JWS algorithm, can be null.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>JWT in compact serialization form, encrypted and/or compressed.</returns>
+        </member>
+        <member name="M:Jose.JWT.Encode(System.String,System.Object,Jose.JweAlgorithm,Jose.JweEncryption,System.Nullable{Jose.JweCompression},System.Collections.Generic.IDictionary{System.String,System.Object},Jose.JwtSettings)">
+            <summary>
+            Encodes given json string to JWT token and applies requested encryption/compression algorithms.
+            Json string to encode will be obtained via configured IJsonMapper implementation.              
+            </summary>
+            <param name="payload">json string to encode (not null or whitespace)</param>
+            <param name="key">key for encryption, suitable for provided JWS algorithm, can be null.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>JWT in compact serialization form, encrypted and/or compressed.</returns>
+        </member>
+        <member name="M:Jose.JWT.EncodeBytes(System.Byte[],System.Object,Jose.JweAlgorithm,Jose.JweEncryption,System.Nullable{Jose.JweCompression},System.Collections.Generic.IDictionary{System.String,System.Object},Jose.JwtSettings)">
+            <summary>
+            Encodes given binary data to JWT token and applies requested encryption/compression algorithms.
+            </summary>
+            <param name="payload">Binary data to encode (not null)</param>
+            <param name="key">key for encryption, suitable for provided JWS algorithm, can be null.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>JWT in compact serialization form, encrypted and/or compressed.</returns>
+        </member>
+        <member name="M:Jose.JWT.Encode(System.Object,System.Object,Jose.JwsAlgorithm,System.Collections.Generic.IDictionary{System.String,System.Object},Jose.JwtSettings)">
+            <summary>
+            Serialize and encodes object to JWT token and sign it using given algorithm.  
+            Json string to encode will be obtained via configured IJsonMapper implementation.      
+            </summary>
+            <param name="payload">object to map to json string and encode</param>
+            <param name="key">key for signing, suitable for provided JWS algorithm, can be null.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>JWT in compact serialization form, digitally signed.</returns>
+        </member>
+        <member name="M:Jose.JWT.Encode(System.String,System.Object,Jose.JwsAlgorithm,System.Collections.Generic.IDictionary{System.String,System.Object},Jose.JwtSettings)">
+            <summary>
+            Encodes given json string to JWT token and sign it using given algorithm.        
+            </summary>
+            <param name="payload">json string to encode (not null or whitespace)</param>
+            <param name="key">key for signing, suitable for provided JWS algorithm, can be null.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>JWT in compact serialization form, digitally signed.</returns>
+        </member>
+        <member name="M:Jose.JWT.EncodeBytes(System.Byte[],System.Object,Jose.JwsAlgorithm,System.Collections.Generic.IDictionary{System.String,System.Object},Jose.JwtSettings)">
+            <summary>
+            Encodes given binary data to JWT token and sign it using given algorithm.        
+            </summary>
+            <param name="payload">Binary data to encode (not null)</param>
+            <param name="key">key for signing, suitable for provided JWS algorithm, can be null.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>JWT in compact serialization form, digitally signed.</returns>
+        </member>
+        <member name="M:Jose.JWT.Decode(System.String,System.Object,Jose.JweAlgorithm,Jose.JweEncryption,Jose.JwtSettings)">
+            <summary>
+            Decodes JWT token by performining necessary decompression/decryption and signature verification as defined in JWT token header.
+            Resulting json string is returned untouched (e.g. no parsing or mapping)
+            </summary>
+            <param name="token">JWT token in compact serialization form.</param>
+            <param name="key">key for decoding suitable for JWT algorithm used.</param>
+            <param name="alg">The algorithm type that we expect to receive in the header.</param>
+            <param name="enc">The encryption type that we expect to receive in the header.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>decoded json string</returns>
+            <exception cref="T:Jose.IntegrityException">if signature valdation failed</exception>
+            <exception cref="T:Jose.EncryptionException">if JWT token can't be decrypted</exception>
+            <exception cref="T:Jose.InvalidAlgorithmException">if JWT signature, encryption or compression algorithm is not supported</exception>
+        </member>
+        <member name="M:Jose.JWT.DecodeBytes(System.String,System.Object,Jose.JweAlgorithm,Jose.JweEncryption,Jose.JwtSettings)">
+            <summary>
+            Decodes JWT token by performining necessary decompression/decryption and signature verification as defined in JWT token header.
+            Resulting bytes of the payload are returned untouched (e.g. no parsing or mapping)
+            </summary>
+            <param name="token">JWT token in compact serialization form.</param>
+            <param name="key">key for decoding suitable for JWT algorithm used.</param>
+            <param name="alg">The algorithm type that we expect to receive in the header.</param>
+            <param name="enc">The encryption type that we expect to receive in the header.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>Decrypted payload as binary data</returns>
+            <exception cref="T:Jose.IntegrityException">if signature valdation failed</exception>
+            <exception cref="T:Jose.EncryptionException">if JWT token can't be decrypted</exception>
+            <exception cref="T:Jose.InvalidAlgorithmException">if JWT signature, encryption or compression algorithm is not supported</exception>
+        </member>
+        <member name="M:Jose.JWT.Decode(System.String,System.Object,Jose.JwsAlgorithm,Jose.JwtSettings)">
+            <summary>
+            Decodes JWT token by performining necessary decompression/decryption and signature verification as defined in JWT token header.
+            Resulting json string is returned untouched (e.g. no parsing or mapping)
+            </summary>
+            <param name="token">JWT token in compact serialization form.</param>
+            <param name="key">key for decoding suitable for JWT algorithm used.</param>
+            <param name="alg">The algorithm type that we expect to receive in the header.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>decoded json string</returns>
+            <exception cref="T:Jose.IntegrityException">if signature valdation failed</exception>
+            <exception cref="T:Jose.EncryptionException">if JWT token can't be decrypted</exception>
+            <exception cref="T:Jose.InvalidAlgorithmException">if JWT signature, encryption or compression algorithm is not supported</exception>
+        </member>
+        <member name="M:Jose.JWT.DecodeBytes(System.String,System.Object,Jose.JwsAlgorithm,Jose.JwtSettings)">
+            <summary>
+            Decodes JWT token by performining necessary decompression/decryption and signature verification as defined in JWT token header.
+            Resulting bytes of the payload are returned untouched (e.g. no parsing or mapping)
+            </summary>
+            <param name="token">JWT token in compact serialization form.</param>
+            <param name="key">key for decoding suitable for JWT algorithm used.</param>
+            <param name="alg">The algorithm type that we expect to receive in the header.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>The payload as binary data</returns>
+            <exception cref="T:Jose.IntegrityException">if signature valdation failed</exception>
+            <exception cref="T:Jose.EncryptionException">if JWT token can't be decrypted</exception>
+            <exception cref="T:Jose.InvalidAlgorithmException">if JWT signature, encryption or compression algorithm is not supported</exception>
+        </member>
+        <member name="M:Jose.JWT.Decode(System.String,System.Object,Jose.JwtSettings)">
+            <summary>
+            Decodes JWT token by performining necessary decompression/decryption and signature verification as defined in JWT token header.
+            Resulting json string is returned untouched (e.g. no parsing or mapping)
+            </summary>
+            <param name="token">JWT token in compact serialization form.</param>
+            <param name="key">key for decoding suitable for JWT algorithm used, can be null.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>decoded json string</returns>
+            <exception cref="T:Jose.IntegrityException">if signature valdation failed</exception>
+            <exception cref="T:Jose.EncryptionException">if JWT token can't be decrypted</exception>
+            <exception cref="T:Jose.InvalidAlgorithmException">if JWT signature, encryption or compression algorithm is not supported</exception>
+        </member>
+        <member name="M:Jose.JWT.DecodeBytes(System.String,System.Object,Jose.JwtSettings)">
+            <summary>
+            Decodes JWT token by performining necessary decompression/decryption and signature verification as defined in JWT token header.
+            Resulting binary payload is returned untouched (e.g. no parsing or mapping)
+            </summary>
+            <param name="token">JWT token in compact serialization form.</param>
+            <param name="key">key for decoding suitable for JWT algorithm used, can be null.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>The payload as binary data</returns>
+            <exception cref="T:Jose.IntegrityException">if signature valdation failed</exception>
+            <exception cref="T:Jose.EncryptionException">if JWT token can't be decrypted</exception>
+            <exception cref="T:Jose.InvalidAlgorithmException">if JWT signature, encryption or compression algorithm is not supported</exception>
+        </member>
+        <member name="M:Jose.JWT.Decode``1(System.String,System.Object,Jose.JweAlgorithm,Jose.JweEncryption,Jose.JwtSettings)">
+            <summary>
+            Decodes JWT token by performining necessary decompression/decryption and signature verification as defined in JWT token header.
+            Resulting json string will be parsed and mapped to desired type via configured IJsonMapper implementation.
+            </summary>
+            <typeparam name="T">Deserid object type after json mapping</typeparam>
+            <param name="token">JWT token in compact serialization form.</param>
+            <param name="key">key for decoding suitable for JWT algorithm used.</param>
+            <param name="alg">The algorithm type that we expect to receive in the header.</param>
+            <param name="enc">The encryption type that we expect to receive in the header.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>object of provided T, result of decoded json mapping</returns>
+            <exception cref="T:Jose.IntegrityException">if signature valdation failed</exception>
+            <exception cref="T:Jose.EncryptionException">if JWT token can't be decrypted</exception>
+            <exception cref="T:Jose.InvalidAlgorithmException">if JWT signature, encryption or compression algorithm is not supported</exception>
+        </member>
+        <member name="M:Jose.JWT.Decode``1(System.String,System.Object,Jose.JwsAlgorithm,Jose.JwtSettings)">
+            <summary>
+            Decodes JWT token by performining necessary decompression/decryption and signature verification as defined in JWT token header.
+            Resulting json string will be parsed and mapped to desired type via configured IJsonMapper implementation.
+            </summary>
+            <typeparam name="T">Deserid object type after json mapping</typeparam>
+            <param name="token">JWT token in compact serialization form.</param>
+            <param name="key">key for decoding suitable for JWT algorithm used.</param>
+            <param name="alg">The algorithm type that we expect to receive in the header.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>object of provided T, result of decoded json mapping</returns>
+            <exception cref="T:Jose.IntegrityException">if signature valdation failed</exception>
+            <exception cref="T:Jose.EncryptionException">if JWT token can't be decrypted</exception>
+            <exception cref="T:Jose.InvalidAlgorithmException">if JWT signature, encryption or compression algorithm is not supported</exception>
+        </member>
+        <member name="M:Jose.JWT.Decode``1(System.String,System.Object,Jose.JwtSettings)">
+            <summary>
+            Decodes JWT token by performining necessary decompression/decryption and signature verification as defined in JWT token header.
+            Resulting json string will be parsed and mapped to desired type via configured IJsonMapper implementation.
+            </summary>
+            <typeparam name="T">Deserid object type after json mapping</typeparam>
+            <param name="token">JWT token in compact serialization form.</param>
+            <param name="key">key for decoding suitable for JWT algorithm used, can be null.</param>
+            <param name="settings">optional settings to override global DefaultSettings</param>
+            <returns>object of provided T, result of decoded json mapping</returns>
+            <exception cref="T:Jose.IntegrityException">if signature valdation failed</exception>
+            <exception cref="T:Jose.EncryptionException">if JWT token can't be decrypted</exception>
+            <exception cref="T:Jose.InvalidAlgorithmException">if JWT signature, encryption or compression algorithm is not supported</exception>
+        </member>
+        <member name="T:Jose.JwtSettings">
+            <summary>
+            JWT settings object.  JWT has a global DefaultSettings instance that can be used to set global defaults.  Additionally,
+            every method in JWT supports adding an optional settings parameter to override the default settings just for that call.
+            </summary>
+        </member>
+        <member name="M:Jose.Dictionaries.Append``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+            Appends `other` key/value pairs to 'src'. Conflicting keys are not appended (e.g. 'src' keys has priority).
+            Operation in mutable, 'src' modified as result. Null safe operation.
+            </summary>
+        </member>
+        <member name="M:Security.Cryptography.EccKey.New(System.Byte[],System.Byte[],System.Byte[],System.Security.Cryptography.CngKeyUsages)">
+            <summary>
+            Creates CngKey Elliptic Curve Key from given (x,y) curve point - public part 
+            and optional d - private part
+            </summary>
+            <param name="x">x coordinate of curve point</param>
+            <param name="y">y coordinate of curve point</param>
+            <param name="d">optional private part</param>
+            <returns>CngKey for given (x,y) and d</returns>
+        </member>
+    </members>
+</doc>

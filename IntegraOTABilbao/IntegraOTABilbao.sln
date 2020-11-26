@@ -4,6 +4,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegraOTABilbao", "IntegraOTABilbao\IntegraOTABilbao.csproj", "{8921EC38-5371-41CA-AE4C-2F729EECD069}"
+	ProjectSection(ProjectDependencies) = postProject
+		{731356CD-2E8A-40E9-8ADD-0C7AD4530DEF} = {731356CD-2E8A-40E9-8ADD-0C7AD4530DEF}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "integraMobile.Domain", "integraMobile.Domain\integraMobile.Domain.csproj", "{D61B49D2-71E7-4594-B4BF-7111445DD51C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "integraMobile.ExternalWS", "integraMobile.ExternalWS\integraMobile.ExternalWS.csproj", "{CAF33ABE-7E51-4812-AE08-78DA84F2140B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "integraMobile.Infrastructure", "integraMobile.Infrastructure\integraMobile.Infrastructure.csproj", "{1A917A7C-C1D1-4BC8-9434-9F37FADC0A6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "integraMobileBilbao.WS", "integraMobileBilbao.WS\integraMobileBilbao.WS.csproj", "{731356CD-2E8A-40E9-8ADD-0C7AD4530DEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "integraMobileWSConfirmationService", "integraMobileWSConfirmationService\integraMobileWSConfirmationService.csproj", "{4C782C63-0F46-4A98-9CA6-39971ABC8222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "integraMobile", "integraMobileBilbao\integraMobile.csproj", "{1884DCF6-0952-4BD9-B372-A0612B80E2C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +30,30 @@ Global
 		{8921EC38-5371-41CA-AE4C-2F729EECD069}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8921EC38-5371-41CA-AE4C-2F729EECD069}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8921EC38-5371-41CA-AE4C-2F729EECD069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D61B49D2-71E7-4594-B4BF-7111445DD51C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61B49D2-71E7-4594-B4BF-7111445DD51C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61B49D2-71E7-4594-B4BF-7111445DD51C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61B49D2-71E7-4594-B4BF-7111445DD51C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAF33ABE-7E51-4812-AE08-78DA84F2140B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAF33ABE-7E51-4812-AE08-78DA84F2140B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAF33ABE-7E51-4812-AE08-78DA84F2140B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAF33ABE-7E51-4812-AE08-78DA84F2140B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A917A7C-C1D1-4BC8-9434-9F37FADC0A6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A917A7C-C1D1-4BC8-9434-9F37FADC0A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A917A7C-C1D1-4BC8-9434-9F37FADC0A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A917A7C-C1D1-4BC8-9434-9F37FADC0A6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{731356CD-2E8A-40E9-8ADD-0C7AD4530DEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{731356CD-2E8A-40E9-8ADD-0C7AD4530DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{731356CD-2E8A-40E9-8ADD-0C7AD4530DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{731356CD-2E8A-40E9-8ADD-0C7AD4530DEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C782C63-0F46-4A98-9CA6-39971ABC8222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C782C63-0F46-4A98-9CA6-39971ABC8222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C782C63-0F46-4A98-9CA6-39971ABC8222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C782C63-0F46-4A98-9CA6-39971ABC8222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1884DCF6-0952-4BD9-B372-A0612B80E2C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1884DCF6-0952-4BD9-B372-A0612B80E2C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1884DCF6-0952-4BD9-B372-A0612B80E2C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1884DCF6-0952-4BD9-B372-A0612B80E2C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

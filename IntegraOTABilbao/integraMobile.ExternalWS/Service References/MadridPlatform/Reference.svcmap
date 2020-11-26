@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="285dee1f-2773-40fa-8dee-10cb991138c5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://217.124.242.5/PublisherService/PublisherService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PublisherService.xsd" MetadataType="Schema" ID="41cb7cf3-96c8-4e85-ab8d-2d56c7e40609" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?xsd=xsd1" />
+    <MetadataFile FileName="PublisherService1.xsd" MetadataType="Schema" ID="590a6567-ee51-4d30-8507-04a09db2b51d" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?xsd=xsd3" />
+    <MetadataFile FileName="PublisherService2.xsd" MetadataType="Schema" ID="61faa518-3c25-4896-ab98-9fc077c9ae6b" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?xsd=xsd4" />
+    <MetadataFile FileName="PublisherService3.xsd" MetadataType="Schema" ID="c9e07dff-d2f1-4ff1-bec4-bae5d2e929b2" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?xsd=xsd6" />
+    <MetadataFile FileName="PublisherService.wsdl" MetadataType="Wsdl" ID="4998c6ce-8f76-431b-801a-3f02efcb48a0" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?wsdl=wsdl1" />
+    <MetadataFile FileName="PublisherService1.wsdl" MetadataType="Wsdl" ID="31616d26-33d6-4eb9-8810-958c01cb9637" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="PublisherService4.xsd" MetadataType="Schema" ID="503182bd-b53d-4fca-a3dc-a96836c0030a" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?xsd=xsd0" />
+    <MetadataFile FileName="PublisherService2.wsdl" MetadataType="Wsdl" ID="1a70b442-9817-495c-8049-a832cf08bf47" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?wsdl=wsdl2" />
+    <MetadataFile FileName="PublisherService5.xsd" MetadataType="Schema" ID="9551fcf1-513a-40e5-adb1-58fddb315a84" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?xsd=xsd7" />
+    <MetadataFile FileName="PublisherService6.xsd" MetadataType="Schema" ID="28fc5d4d-23e8-4bc2-909c-c0cef647ab38" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?xsd=xsd5" />
+    <MetadataFile FileName="PublisherService7.xsd" MetadataType="Schema" ID="14d9a77e-43d4-4f63-8bcc-1082ff81597d" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?xsd=xsd2" />
+    <MetadataFile FileName="PublisherService3.wsdl" MetadataType="Wsdl" ID="138bf7fa-6782-4f9f-be18-6b4101e644cf" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?wsdl" />
+    <MetadataFile FileName="PublisherService.disco" MetadataType="Disco" ID="76cd1db0-201d-4eff-b791-92bdbf919bc2" SourceId="1" SourceUrl="https://217.124.242.5/PublisherService/PublisherService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
